@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Webpage</title>
+</head>
+
+
+
+<body style="margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;">
+
+    <!-- First page -->
+    <!-- First 2/5th of the screen -->
+    <div style="top : 0;
+    width: 99vw;
+    display: flex;
+    height: 40vh; /* 2/5 of screen height */
+    position: relative;
+    z-index: 1;">
+
+        <div style="background-color: green;
+            flex : 2; /* 2/3 of screen width */
+            display: flex;
+            position: relative;
+            border-top: 2px solid #000; /* 2px black border */
+            border-right: 2px solid #000; /* 2px black border */
+            border-left: 2px solid #000; /* 2px black border */
+            align-items: center; /* center child items around vertical axis */
+            justify-content: center; /* center child items around horizontal axis */
+            z-index: 1;">
+
+            <div style="background-color: white;
+            width: 40%; 
+            padding: 10%;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #000; /* 2px black border */
+            z-index: 1;">
+                <!-- Content inside the child box -->
+            </div>
+        </div>
+        
+        <div style="background-color: red;
+        flex : 1;
+        display: flex;
+        flex-direction: column; /*vertical division */
+        border-top: 2px solid #000; /* 2px black border */
+        border-right: 2px solid #000; /* 2px black border */
+        z-index: 1;">
+            <div style="flex : 1;
+            border-bottom: 1px solid #000; /* 2px black border */
+            border-right: 1px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+            <div style="flex : 1;
+            border-top: 1px solid #000; /* 2px black border */
+            border-bottom: 1px solid #000; /* 2px black border */
+            border-right: 1px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+            <div style="flex : 1;
+            border-top: 1px solid #000; /* 2px black border */
+            border-right: 1px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+        </div>
+    </div>
+
+    <!-- Next 1/5th of the screen -->
+    <div style="background-color: white;
+                width: 99vw;
+                height: 20vh; /* 1/5 of screen height */
+                border-radius: 20px;
+                border: 2px solid #000; /* 2px black border */
+                position: sticky;
+                top: 0;
+                text-align: center;
+                z-index: 1000;">
+        <br>This sticks to screen top after scrolling reaches screen top
+    </div>
+
+    <div style="background-color: yellow;
+    width: 99vw;
+    height: 39.2vh; /* Approximately 2/5 of screen height */
+    display: flex;
+    border-bottom: 2px solid #000; /* 2px black border */
+    border-right: 2px solid #000; /* 2px black border */
+    border-left: 2px solid #000; /* 2px black border */
+    position: relative;
+    z-index: 1;">
+
+        <div style="position: absolute;
+        bottom: 0;
+        right: 0;
+        height: calc(1/6*100%);
+        width : calc(1/6*100%);
+        background-color: white;
+        border-top: 1px solid #000; /* 2px black border */
+        border-left: 1px solid #000; /* 2px black border */
+        padding: 10px;
+        z-index: 1;">
+            <!-- Content inside the white box at the bottom right -->
+        </div>
+    </div>
+
+    <div style="position: fixed; 
+    bottom: 0; 
+    width: 100%; 
+    color: #000; 
+    text-align: center; 
+    padding: 10px;
+    z-index: 100;">
+        Copyright © 2023
+    </div>
+    
+
+    <!-- Second page -->
+    <div style="background-color: white;
+    width: 99vw;
+    height: 33.3vh; /* 2/5 of screen height */
+    display: flex;
+    border-bottom: 2px solid #000; /* 2px black border */
+    border-right: 2px solid #000; /* 2px black border */
+    border-left: 2px solid #000; /* 2px black border */
+    position: relative;
+    flex-direction: row; /*horizontal division */
+    z-index: 1;">
+
+        <div style="flex: 1;
+        position: relative;
+        align-items: center; /* center child items around vertical axis */
+        justify-content: center; /* center child items around horizontal axis */">
+            <div style="background-color: white;
+            width: 50%; /* 2/5 of green-box width */
+            padding: 15%;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+        </div>
+
+        <div style="flex: 1;
+        position: relative;
+        align-items: center; /* center child items around vertical axis */
+        justify-content: center; /* center child items around horizontal axis */">
+            <div style="background-color: white;
+            width: 40%; /* 2/5 of green-box width */
+            padding: 20%;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+        </div>
+
+        <div style="flex: 1;
+        position: relative;
+        align-items: center; /* center child items around vertical axis */
+        justify-content: center; /* center child items around horizontal axis */
+        z-index: 1;">
+            <div style="background-color: white;
+            width: 40%; /* 2/5 of green-box width */
+            padding: 60px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+        </div>        
+    </div>
+
+    <div style="background-color: white;
+    width: 99vw;
+    height: 66.1vh; /* 2/5 of screen height */
+    display: flex;
+    border-right: 2px solid #000; /* 2px black border */
+    border-left: 2px solid #000; /* 2px black border */
+    position: relative;
+    z-index: 1;">    
+    </div>
+
+
+    <!-- Third page -->
+    <!-- First 2/5th of the screen -->
+    <div style="top : 0;
+    width: 99vw;
+    display: flex;
+    height: 40vh; /* 2/5 of screen height */
+    position: relative;
+    z-index: 1;">
+
+        <div style="background-color: green;
+            flex : 2; /* 2/3 of screen width */
+            display: flex;
+            position: relative;
+            border-top: 2px solid #000; /* 2px black border */
+            border-right: 2px solid #000; /* 2px black border */
+            border-left: 2px solid #000; /* 2px black border */
+            align-items: center; /* center child items around vertical axis */
+            justify-content: center; /* center child items around horizontal axis */
+            z-index: 1;">
+
+            <div style="background-color: white;
+            width: 40%; 
+            padding: 10%;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #000; /* 2px black border */
+            z-index: 1;">
+                <!-- Content inside the child box -->
+            </div>
+        </div>
+        
+        <div style="background-color: red;
+        flex : 1;
+        display: flex;
+        flex-direction: column; /*vertical division */
+        border-top: 2px solid #000; /* 2px black border */
+        border-right: 2px solid #000; /* 2px black border */
+        z-index: 1;">
+            <div style="flex : 1;
+            border-bottom: 1px solid #000; /* 2px black border */
+            border-right: 1px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+            <div style="flex : 1;
+            border-top: 1px solid #000; /* 2px black border */
+            border-bottom: 1px solid #000; /* 2px black border */
+            border-right: 1px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+            <div style="flex : 1;
+            border-top: 1px solid #000; /* 2px black border */
+            border-right: 1px solid #000; /* 2px black border */
+            z-index: 1;"></div>
+        </div>
+    </div>
+
+    <!-- Next 1/5th of the screen -->
+    <div style="background-color: white;
+    width: 99vw;
+    height: 20vh; /* 1/5 of screen height */
+    border-radius: 20px;
+    border: 2px solid #000; /* 2px black border */
+    position: relative; 
+    z-index: 1;">
+        <!-- Content inside the white box -->
+    </div>
+
+    <div style="background-color: yellow;
+    width: 99vw;
+    height: 39.2vh; /* 2/5 of screen height */
+    display: flex;
+    border-bottom: 2px solid #000; /* 2px black border */
+    border-right: 2px solid #000; /* 2px black border */
+    border-left: 2px solid #000; /* 2px black border */
+    position: relative;
+    z-index: 1;">
+
+        <div style="position: absolute;
+        bottom: 0;
+        right: 0;
+        height: calc(1/6*100%);
+        width : calc(1/6*100%);
+        background-color: white;
+        border-top: 1px solid #000; /* 2px black border */
+        border-left: 1px solid #000; /* 2px black border */
+        padding: 10px;
+        z-index: 1;">
+            <!-- Content inside the white box at the bottom right -->
+        </div>
+    </div>
+</body>
+</html>

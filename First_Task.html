@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>First Webpage</title>
+</head>
+
+<body style="margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;">
+
+<!-- First page -->
+<!-- First 2/5th of the screen -->
+<div style="box-sizing: border-box; /*include the padding and border in the size calculation */
+display: flex; height: 40vh; /* 2/5 of screen height */
+position: relative;">
+
+  <div style="background-color: green; flex : 2; /* 2/3 of screen width */
+  position: relative; border-top: 2px solid #000; border-right: 2px solid #000;
+  border-left: 2px solid #000;">
+
+    <div style="background-color: white; width: 40%; padding: 10%; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%); border: 2px solid #000;">
+    </div>
+  </div>
+
+  <div style="background-color: red; flex : 1; display: flex; flex-direction: column; /*vertical division */
+  border-top: 2px solid #000; /* 2px black border */
+  border-right: 2px solid #000; /* 2px black border */">
+
+    <div style="flex : 1; border-bottom: 1px solid #000; border-right: 1px solid #000;">
+    </div>
+    <div style="flex : 1; border-top: 1px solid #000; border-bottom: 1px solid #000;
+    border-right: 1px solid #000;">
+    </div>
+    <div style="flex : 1; border-top: 1px solid #000; /* 2px black border */
+    border-right: 1px solid #000; /* 2px black border */">
+    </div>
+  </div>
+</div>
+
+<!-- Next 1/5th of the screen -->
+<div style="background-color: white; box-sizing: border-box;
+height: 20vh; /* 1/5 of screen height */
+border-radius: 20px; border: 2px solid #000;
+position: sticky; /* cannot use parent class because of sticky position */
+top: 0; text-align: center; z-index: 1;">
+  <br>This sticks to screen top after scrolling reaches screen top
+</div>
+
+<!-- Next 2/5th of the screen -->
+<div style="background-color: yellow; box-sizing: border-box;
+height: 40vh; /* 2/5 of screen height */
+border-right: 2px solid #000; /* 2px black border */
+border-left: 2px solid #000; /* 2px black border */
+position: relative;">
+
+  <div style="position: absolute; bottom: 0; right: 0; height: calc(1/6*100%);
+  width: calc(1/6*100%); background-color: white;
+  border-top: 1px solid #000; /* 2px black border */
+  border-left: 1px solid #000; /* 2px black border */
+  padding: 10px;">
+  </div>
+</div>
+
+<div style="position: fixed; bottom: 0;
+width: 100%; /*width set to 100% to align text to center */
+white-space: nowrap; color: #000; text-align: center; padding: 10px;
+    z-index: 1;">
+  Copyright © 2023
+</div>
+
+
+<!-- Second page -->
+<div style = "height: 100vh; box-sizing: border-box; display: flex; flex-direction: column;">
+  <div style="flex: 1; border: 2px solid black; display: flex; padding: 50px; gap:50px; align-items: center">
+    <div style="border: 1px solid black; height: 100px; flex: 1;"></div>
+    <div style="border: 1px solid black; height: 200px; flex: 1;"></div>
+    <div style="border: 1px solid black; height: 100px; flex: 1;"></div>
+  </div>
+
+  <div style="background-color: white;
+    flex :2;
+    border-right: 2px solid #000; /* 2px black border */
+    border-left: 2px solid #000; /* 2px black border */
+    position: relative;">
+  </div>
+</div>
+
+<!-- Third page -->
+<!-- First 2/5th of the screen -->
+<div style="box-sizing: border-box; /*include the padding and border in the size calculation */
+display: flex; height: 40vh; /* 2/5 of screen height */
+position: relative;">
+
+  <div style="background-color: green; flex : 2; /* 2/3 of screen width */
+  position: relative; border-top: 2px solid #000; border-right: 2px solid #000;
+  border-left: 2px solid #000;">
+
+    <div style="background-color: white; width: 40%; padding: 10%; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%); border: 2px solid #000;">
+    </div>
+  </div>
+
+  <div style="background-color: red; flex : 1; display: flex; flex-direction: column; /*vertical division */
+  border-top: 2px solid #000; /* 2px black border */
+  border-right: 2px solid #000; /* 2px black border */">
+
+    <div style="flex : 1; border-bottom: 1px solid #000; border-right: 1px solid #000;">
+    </div>
+    <div style="flex : 1; border-top: 1px solid #000; border-bottom: 1px solid #000;
+    border-right: 1px solid #000;">
+    </div>
+    <div style="flex : 1; border-top: 1px solid #000; /* 2px black border */
+    border-right: 1px solid #000; /* 2px black border */">
+    </div>
+  </div>
+</div>
+
+<!-- Next 1/5th of the screen -->
+<div style="background-color: white; box-sizing: border-box;
+height: 20vh; /* 1/5 of screen height */
+border-radius: 20px; border: 2px solid #000;position: relative;">
+</div>
+
+<!-- Next 2/5th of the screen -->
+<div style="background-color: yellow; box-sizing: border-box;
+height: 40vh; /* 2/5 of screen height */
+border-right: 2px solid #000; /* 2px black border */
+border-left: 2px solid #000; /* 2px black border */
+position: relative;">
+
+  <div style="position: absolute; bottom: 0; right: 0; height: calc(1/6*100%);
+  width: calc(1/6*100%); background-color: white;
+  border-top: 1px solid #000; /* 2px black border */
+  border-left: 1px solid #000; /* 2px black border */
+  padding: 10px;">
+  </div>
+</div>
+</body>
+</html>

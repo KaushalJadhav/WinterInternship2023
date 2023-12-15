@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Example</title>
+    <style>
+        input {
+            display: inline-block;
+            width: 100%;
+            height: 9vh;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            font-size: x-large;
+            border: 2px solid black;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        @media screen and (max-width: 1800px) {
+        input {
+            font-size: medium;}
+        }
+
+        @media screen and (max-width: 1200px) {
+        input {
+            font-size: small;}
+        }
+
+        @media screen and (max-width: 500px) {
+        input {
+            font-size: x-small;}
+        }
+
+        input:focus {
+            border: 2px solid darkblue;
+        }
+
+        .invalid {
+            border: 2px solid red;
+        }
+
+        label {
+        position: absolute;
+        left: 20px;
+        top: 50%; 
+        transform: translateY(-50%);
+        transition: 0.2s;
+        font-size: large;
+        color: grey;
+        }
+
+        input:valid ~ label {
+        top: 10px;
+        left: 10px;
+        font-size: small;
+        transform: translateY(0%);
+        }
+
+        input:focus ~ label{
+            top: 10px;
+            left: 10px;
+            font-size: small;
+            transform: translateY(0%);
+            color: darkblue;
+        }
+
+        input:not(:focus) ~ label{
+            color: grey;
+        }
+
+        @media screen and (max-width: 1700px) {
+        input:valid ~ label {
+            top: 3px;};
+        input:focus ~ label {
+            top: 3px;};
+        input:invalid ~ label {
+            font-size: medium;}
+        }
+
+        @media screen and (max-width: 1200px) {
+        input:valid ~ label {
+            font-size: xx-small;
+            top: 3px;}
+        input:focus ~ label {
+            font-size: xx-small;
+            top: 3px;}
+        input:invalid ~ label {
+            font-size: small;}
+        }
+
+        select{
+            position: relative;
+            flex: 3;
+            border: none;
+            outline: none;
+            background: transparent;
+            vertical-align: middle;
+            margin-bottom: 10px; 
+            text-align: center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            font-size: 16px;
+            line-height: 1.5;
+            }
+
+        button{
+            position: relative;
+            margin: 50px 50% 0 0;
+            transform: translateX(50%); 
+            height: 5vh;
+            width: 50%;
+            border-radius: 25px;
+            border: 2px solid black;
+            background-color: black;
+            color: white;
+            font-size: 20px;
+        }
+
+        button:disabled {
+            background-color: grey; 
+            border-color: grey; 
+            cursor: not-allowed; 
+        }
+
+    </style>
+</head>
+
+
+
+<body style= "margin: 0;
+padding: 0;
+font-family: Arial, sans-serif;">
+
+<!-- Main Text -->
+<div id="MainText" style="height: 100vh;
+background-color: rgba(0, 0, 0, 0.5);">
+</div>
+
+
+<!-- Form -->
+<form id="modal" style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);
+background-color: #ffffff;border-radius: 10px;padding: 20px 80px;
+height: 80vh;width: 40vw;overflow: auto;">
+
+<!-- Close button -->
+<div id="close_button" onclick="close_modal()" style="position: absolute;top: 10px;left: 10px;
+cursor: pointer;font-size: 30px;">&times;</div>
+
+<h1 style="font-size: 50px">Create your account</h1>
+
+<!-- Name -->
+<div id='NameBox' style="position: relative;">
+    <input type="text" required spellcheck="false"  id="NameBox_input" maxlength="100" oninput="char_count()"
+    onfocus="document.getElementById('Name_char_count').style.color = 'black';" 
+    onblur="document.getElementById('Name_char_count').style.color = 'grey'; chk_input_on_blur(this,'Name_warning',0);">
+    <p id="Name_char_count" style="top: -5px;right: 10px;font-size: small;position:absolute;color: grey"> 0/50</p>
+    <p id="Name_warning" style="bottom: -35px;left: 10px;font-size: small;position:absolute;color: red;">
+    </p>
+    <label for="NameBox_input"> Name</label>
+</div>
+
+<!-- Phone Number -->
+<div id='PhoneBox' style="position: relative; margin: 45px 0px 25px 0px;">
+    <input type="text" required id="PhoneBox_input" onfocus="print_on_focus(this,'+91 ')" oninput="phone_count()" maxlength="16"
+    onblur="chk_input_on_blur(this,'Phone_warning',4)">
+    <p id="Phone_warning" style="bottom: -35px;left: 10px;font-size: small;position:absolute;color: red;">
+    </p>
+    <label for="PhoneBox_input"> Phone</label>
+</div>
+
+<!-- Email id -->
+<div id='EmailBox' style="position: relative; margin: 45px 0px 25px 0px; display:none">
+    <input type="text" spellcheck="false" id="EmailBox_input" oninput="validate_email()" 
+    onblur="chk_input_on_blur(this,'Email_warning',0)">
+    <p id="Email_warning" style="bottom: -35px;left: 10px;font-size: small;position:absolute;color: red;">
+    </p>
+    <label for="EmailBox_input"> Email</label>
+</div>
+
+<!-- Toggle option -->
+<div style="display: flex; position: relative;">
+    <div style="flex:4;"></div>
+    <div id='EmailOption' style="flex:1; text-align: right;color: rgb(82, 82, 189);
+    font-size: large;" onmouseover="this.style.textDecoration = 'underline'" 
+    onmouseout="this.style.textDecoration='none'" onclick = "toggle_visibility()">
+    Use email instead</div>
+</div>
+
+
+<!-- Date of birth -->
+<h6 style="font-size: 22px; margin-bottom: 12px;"><b>Date of Birth</b></h6>
+<p style="position: relative; margin-bottom: 15px; font-size: 20px">
+    This will not be shown publicly. Confirm your own age, even if this account is for business, a pet or something else.
+</p>
+
+<div style="display: flex; position: relative; height: 9vh; align-items: center; gap: 60px;">
+    <div id="Month" style="display: flex; flex: 3; flex-direction: column; height: 9vh; border: 2px solid grey; border-radius: 5px; 
+    cursor: default; background-position: calc(100% - 10px) 70%; background-image: url('down_arrow.png'); 
+    background-size: 20px; background-repeat: no-repeat; color: grey;">
+        <div style="flex: 2; text-align: center;padding-top: 5px;">Month</div>
+        <select id="Month_select" required onfocus="change_border('Month','darkblue')" 
+        onblur="change_border('Month','grey',false,'Month_select')" onchange="update_options('Month')">
+            <option value="" disabled selected hidden></option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select>
+    </div>
+
+    <div id="Day" style="display: flex; flex: 2; flex-direction: column; height: 9vh; border: 2px solid grey; border-radius: 5px; 
+    cursor: default; background-position: calc(100% - 10px) calc(70%); background-image: url('down_arrow.png'); 
+    background-size: 20px; background-repeat: no-repeat; color: grey;">
+        <div style="flex: 2; text-align: center;padding-top: 5px;">Day</div>
+        <select id="Day_select" required onfocus="change_border('Day','darkblue')" onblur="change_border('Day','grey',false,'Day_select')" 
+        onchange="change_border('Day','darkblue',true); change_border('Month','grey',true); change_border('Year','grey',true);">        
+        </select>
+    </div>
+    <div id="Year" style="display: flex; flex: 2; flex-direction: column; height: 9vh; border: 2px solid grey; border-radius: 5px; 
+    cursor: default; background-position: calc(100% - 10px) calc(70%); background-image: url('down_arrow.png'); 
+    background-size: 20px; background-repeat: no-repeat; color: grey;">
+        <div style="flex: 2; text-align: center;padding-top: 5px;">Year</div>
+        <select id="Year_select" required onfocus="change_border('Year','darkblue')" 
+        onblur="change_border('Year','grey',false,'Year_select')" onchange="update_options('Year')">
+        </select>
+    </div>
+</div>
+<p id="Date_Warning" style="position: relative; margin : 15px 0px; font-size: 15px; color: red"></p>
+
+<!-- Submit button -->
+<button type="button" id="Submit_Button" disabled onclick="submit_form()">Submit</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+<script>
+    function close_modal() {
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById("MainText").style.opacity = "0";
+    }
+    
+    //function to count and display character count in name box
+    function char_count() {
+        var NameBox_input = document.getElementById('NameBox_input');
+        var Name_char_count = document.getElementById('Name_char_count');
+        var Name_warning = document.getElementById('Name_warning');
+
+        var count = NameBox_input.value.trim().length;
+        Name_char_count.textContent = `${count}/50`;
+        
+        if (count<=50) {
+            Name_warning.textContent = '';
+            Name_char_count.style.color = 'black';
+            NameBox_input.classList.remove("invalid");
+        } 
+        else {
+            Name_char_count.style.color = 'red';
+            Name_warning.textContent = '50 character limit is reached!';
+            NameBox_input.classList.add("invalid");
+        }
+
+        //Update Submit button
+        chk_valid();
+    }
+
+    // Helper function to check whether given name is allowed
+    function isValidName(str) {
+        return 0<str.length && str.length<=50
+    }
+
+    // Function to check whether input is non-empty and change the border color accordingly
+    function chk_input_on_blur(ele,id2,val) {
+      var input = document.getElementById(ele.id);
+      
+      // Check if input is empty
+      if ((input.value.trim().length<=val)){
+        document.getElementById(id2).textContent = 'This is required!';
+        input.classList.add("invalid");
+      }
+    }
+    
+    // For phone number - prints +91 on focus
+    function print_on_focus(ele,txt){
+        var input = document.getElementById(ele.id);
+        var x = input.value;
+        if(x.trim() == ""){
+            input.value = txt + input.value;
+        }
+    }
+    
+    // Helper function to check whether given string is valid phone number
+    function isValidPhone(str) {
+        // Match Regex pattterns
+        const pattern = /^\+\d{2}\s\d{3}\s\d{3}\s\d{4}$/;
+        return pattern.test(str);
+    }
+    
+    // Automatic insertion of spaces in phone input
+    // Also checks validity of phone number
+    function phone_count(){
+        var input = document.getElementById("PhoneBox_input");
+        var Phone_warning = document.getElementById("Phone_warning")
+        var x = input.value;
+        if(x.trim().length==0){
+            input.value = input.value + '+';
+        }
+        if (x.length == 3 && event.inputType !== 'deleteContentBackward'
+        && event.inputType !== 'deleteContentForward' && event.inputType !== 'deleteByCut'){
+            input.value = input.value + ' ';
+        }
+        if (x.length == 7 && event.inputType !== 'deleteContentBackward'
+        && event.inputType !== 'deleteContentForward' && event.inputType !== 'deleteByCut'){
+            input.value = input.value + ' ';
+        }
+        
+        if (x.length == 11 && event.inputType !== 'deleteContentBackward'
+        && event.inputType !== 'deleteContentForward' && event.inputType !== 'deleteByCut'){
+            input.value = input.value + ' ';
+        }
+        if (isValidPhone(input.value)) {
+            Phone_warning.textContent = '';
+            input.classList.remove("invalid");
+        } 
+        else {
+            Phone_warning.textContent = 'Please enter correct phone number';
+            input.classList.add("invalid");
+        }
+
+        //Update Submit button
+        chk_valid();
+    }
+
+    // Helper function to check whether given string is valid email-ID
+    function isValidEmail(str) {
+        // Match Regex pattterns
+        const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return pattern.test(str);
+    }
+    
+    // function to validate email id on input
+    function validate_email(){
+        var input = document.getElementById("EmailBox_input");
+        var Email_warning = document.getElementById("Email_warning")
+        if (isValidEmail(input.value.trim())) {
+            Email_warning.textContent = '';
+            input.classList.remove("invalid");
+        } 
+        else {
+            Email_warning.textContent = 'Please enter correct email id';
+            input.classList.add("invalid");
+        }
+
+        //Update Submit button
+        chk_valid();
+    }
+
+    // Function to toggle visibility of email and phone box.
+    function toggle_visibility(){
+        var EmailBox = document.getElementById("EmailBox");
+        var PhoneBox = document.getElementById("PhoneBox");
+        var EmailOption = document.getElementById("EmailOption");
+        if (PhoneBox.style.display == "none"){
+            PhoneBox.style.display="block";
+            document.getElementById("PhoneBox_input").required = true;
+            EmailBox.style.display = "none";
+            document.getElementById("EmailBox_input").removeAttribute('required');
+            EmailOption.textContent = "Use email instead";
+        }
+        else {
+            PhoneBox.style.display="none";
+            document.getElementById("PhoneBox_input").removeAttribute('required');
+            EmailBox.style.display = "block";
+            document.getElementById("EmailBox_input").required = true;
+            EmailOption.textContent = "Use phone instead";
+        }
+
+        //Update Submit button
+        chk_valid();
+    }
+    
+    // Helper function to generate options for date and year
+    function create_options(id,min_count,max_count,desc=false){
+        var sel_box = document.getElementById(id);
+        var option = document.createElement('option');
+        option.value = '';
+        option.disabled = true;
+        option.selected = true;
+        option.hidden = true;
+        sel_box.add(option);
+
+        for (var i = min_count; i <= max_count; i++) {
+          var option = document.createElement('option');
+          var temp = desc ? max_count + min_count - i : i;
+          option.value = temp;
+          option.text = temp;
+          sel_box.add(option);
+        }
+    }
+    
+    create_options("Day_select",1,31);
+
+    // Get the current year. Options start from current year-120
+    var curr_year = new Date().getFullYear();
+    create_options("Year_select",curr_year - 120,curr_year,true);
+    
+    // Function to update date options based on month value
+    // If currently selected date is not legal according to the month, it is deselected 
+    // and date is marked invalid
+    function update_options(on_focus) {
+      var Day_select = document.getElementById('Day_select');
+      
+      //store current date value
+      var date_sel = parseInt(Day_select.value, 10);
+
+      // Clear existing options if a month has been selected 
+      if (!(on_focus=="Year" && month_sel === ''))
+      Day_select.innerHTML = '';
+      var month_sel = document.getElementById('Month_select').value;
+
+      if (month_sel === '') {
+            // If no month is selected, show options for dates 1 to 31
+            create_options("Day_select",1,31);} 
+      else {
+        // If a month is selected, get the maximum number of days
+        // First map month to its index
+        const months = ['January', 'February', 'March', 'April','May', 'June', 
+                        'July', 'August','September', 'October', 'November', 'December'];
+        var month_idx = months.indexOf(month_sel) + 1;
+
+        // Use the year if entered by the user else use 2020 (a random leap year)
+        var year_sel = document.getElementById('Year_select').value;
+        var sample_year = (year_sel=='') ? 2020 : parseInt(year_sel,10);
+        var max_days = new Date(sample_year, month_idx, 0).getDate();
+
+        // Add options for dates based on max days
+        create_options("Day_select",1,max_days);
+
+        // Check if the currently selected date is within bounds
+        if ((!isNaN(date_sel)) && (date_sel > max_days)) {
+            Day_select.value = ''; // Deselect the date if it's out of bounds
+            // change border to mark invalid
+            change_border("Day","red");
+            change_border("Month","red");
+            change_border("Year","red");
+        }
+        else{
+            Day_select.value = isNaN(date_sel) ? '' : date_sel.toString()
+            // change border to mark valid
+            change_border("Day","grey",true);
+            if (on_focus=="Month"){
+                change_border("Month","darkblue",true);
+                change_border("Year","grey",true);
+            }
+            else{
+                change_border("Month","grey",true);
+                change_border("Year","darkblue",true);
+            }
+        }
+      }
+      // Update submit button
+      chk_valid()
+    }
+    
+    // Helper function to change border color on focus, on blur and on change 
+    // If the border is already red, the date has been marked invalid. Hence, border color is only changed
+    // if it is allowed
+    function change_border(id,color,change_if_red=false,chk_if_empty=""){
+        var ele = document.getElementById(id);
+        var Date_Warning = document.getElementById("Date_Warning");
+
+        if (chk_if_empty != "")
+        {
+            var temp = document.getElementById(chk_if_empty).value;
+            if (temp=='') color = 'red';
+        }
+        
+        if (color=='red')
+        {
+            ele.style.color = 'red';
+            ele.style.borderColor = 'red';
+            Date_Warning.textContent = "Please enter correct date of birth";
+        }
+        else if (!(ele.style.color == 'red') || (change_if_red))
+        {   
+            ele.style.color = color;
+            ele.style.borderColor = color;
+            Date_Warning.textContent = "";
+        }
+    }
+
+    // check validity of form to enable submit button
+    function chk_valid(){
+        var name = document.getElementById("NameBox_input").value.trim();
+        var phone = document.getElementById("PhoneBox_input").value;
+        var email = document.getElementById("EmailBox_input").value.trim(); 
+        var phone_is_visible = document.getElementById("EmailBox").style.display == "none";
+
+        var phone_email_valid = phone_is_visible ? isValidPhone(phone) : isValidEmail(email);
+        var is_form_valid = phone_email_valid && isValidName(name);
+
+        var day = document.getElementById("Day_select").value;
+        var month = document.getElementById("Month_select").value;
+        var year = document.getElementById("Year_select").value;
+        if (day=='' || month=='' || year=='') is_form_valid = false;
+        else {
+            const months = ['January', 'February', 'March', 'April','May', 'June', 
+                        'July', 'August','September', 'October', 'November', 'December'];
+            var month_idx = months.indexOf(month) + 1;
+            var max_days = new Date(parseInt(year,10), month_idx, 0).getDate();
+            is_form_valid = parseInt(day,10) < max_days;
+        }
+
+        document.getElementById('Submit_Button').disabled = !is_form_valid;
+    }
+    
+    // Function to submit form
+    function submit_form(){
+        // Right now logging to console
+        var name = document.getElementById("NameBox_input").value.trim();
+        var phone = document.getElementById("PhoneBox_input").value;
+        var email = document.getElementById("EmailBox_input").value.trim(); 
+        var phone_is_visible = document.getElementById("EmailBox").style.display == "none";
+        var phone_email = phone_is_visible? phone: email;
+
+        const months = ['January', 'February', 'March', 'April','May', 'June', 'July', 'August','September', 'October', 
+        'November', 'December'];
+        var month_val = months.indexOf(document.getElementById("Month_select").value)+1;
+        var dob = `${document.getElementById("Day_select").value}/${month_val}/${document.getElementById("Year_select").value}`;
+
+        console.log(`Name: ${name}, Phone/Email: ${phone_email}, DOB: ${dob}`);
+        close_modal();
+    }
+    
+</script>
+</body>
+</html>
